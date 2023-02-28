@@ -6,7 +6,7 @@ import {
 const routes = [{
     path: '/',
     name: 'Home',
-    component: () => import('view/Home.vue'), 
+    component: () => import('@/view/HomeComp.vue'),
 }];
 
 const router = createRouter({
@@ -15,8 +15,6 @@ const router = createRouter({
 });
 
 // 路由拦截处理
-router.beforeEach(async (to, from, next) => {
-    return next();
-});
+router.beforeEach(async (to, from, next) => next());
 
 export default router;
