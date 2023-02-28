@@ -1,5 +1,5 @@
 {
-  "name": "ye-template-project",
+  "name": "vue3-template-project",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
