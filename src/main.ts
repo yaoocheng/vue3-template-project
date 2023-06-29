@@ -7,7 +7,7 @@ import { createPinia } from 'pinia';
 import router from './router/index';
 import App from './App.vue';
 import 'element-plus/dist/index.css';
-import 'ast/css/index.css';
+import './style/index.less';
 
 const app = createApp(App);
 app.use(router);

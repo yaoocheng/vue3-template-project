@@ -23,7 +23,7 @@
             "@/*": [
                 "src/*"
             ],
-            "ast/*": [
+            "assets/*": [
                 "src/assets/*"
             ],
             "view/*": [

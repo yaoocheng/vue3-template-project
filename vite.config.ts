@@ -9,10 +9,10 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src'),
-            ast: resolve(__dirname, 'src/assets'),
+            assets: resolve(__dirname, 'src/assets'),
             view: resolve(__dirname, 'src/view'),
             comp: resolve(__dirname, 'src/components'),
-            util: resolve(__dirname, 'src/utils'),
+            utils: resolve(__dirname, 'src/utils'),
             page: resolve(__dirname, 'src/page'),
             api: resolve(__dirname, 'src/api'),
         },
@@ -22,7 +22,7 @@ export default defineConfig({
             less: {
                 javascriptEnabled: true,
                 modifyVars: {
-                    hack: `true; @import (reference) "${path.resolve('src/assets/css/index.less')}"`,
+                    hack: `true; @import (reference) "${path.resolve('src/style/index.less')}"`,
                 },
             },
         },
@@ -65,7 +65,7 @@ export default defineConfig({
                 target: 'https://www.example.com/',
                 changeOrigin: true, // 跨域设置
                 secure: false,
-                rewrite: (paths) => paths.replace(/^\/api/, '/'),
+                rewrite: (paths:any) => paths.replace(/^\/api/, '/'),
             },
         },
     },
