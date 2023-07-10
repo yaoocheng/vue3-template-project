@@ -1,33 +1,50 @@
 import Axios from 'axios';
+import type {
+    AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse,
+} from 'axios';
 import {
     showMessage, getUserInfo,
-} from 'util/tools';
+} from 'utils/tools';
 
-const axios = Axios.create({
+const serivce:AxiosInstance = Axios.create({
     baseURL: '',
 });
 
 // 前置拦截器（发起请求之前的拦截）
-axios.interceptors.request.use(
-    async (request: any) => {
+serivce.interceptors.request.use(
+    async (request: AxiosRequestConfig | any) => {
         if (getUserInfo()) {
             request.headers.Authorization = `${getUserInfo().token}`;
             request.headers.Uid = `${getUserInfo().user_id}`;
         }
         return request;
     },
-    (error) => Promise.reject(error),
+    (error:AxiosError) => Promise.reject(error),
 );
 
 // 后置拦截器（获取到响应时的拦截）
-axios.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        const code = error.response.status;
-        const msg = error.response?.data?.msg_zh || error.response?.data?.msg_en || error.response.statusText;
+serivce.interceptors.response.use(
+    (response: AxiosResponse) => response,
+    (error:AxiosError) => {
+        const code = error.response?.status;
+        const msg = error.response?.data?.msg_zh || error.response?.data?.msg_en || error.response?.statusText;
         showMessage(`${code}: ${msg}`, 'error');
         return Promise.reject(error);
     },
 );
 
-export default axios;
+// get request
+export const get = async <T>(url: string, params: Object): Promise<T> => {
+    const r = await serivce.get(url, {
+        params,
+    });
+
+    return r.data;
+};
+
+// post request
+export const post = async <T>(url: string, data: Object): Promise<T> => {
+    const r = await serivce.post(url, data);
+
+    return r.data;
+};
