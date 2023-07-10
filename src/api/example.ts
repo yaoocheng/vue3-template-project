@@ -1,15 +1,18 @@
-import axios from './index';
+import { get, post } from './index';
 
-interface apiType {}
+interface type {}
 
 /**
  *  example api
  */
-// eslint-disable-next-line import/prefer-default-export
-export function exampleApi(data: apiType) {
-    return axios({
-        method: 'post',
-        url: '/example/data',
-        data,
-    });
+export function exampleApi(data: Object) {
+    return post<type>('/api/exp', data);
 }
+
+/**
+ *  example api
+ */
+export function example1Api(data: Object) {
+    return get<type>('/api/exp', data);
+}
+
