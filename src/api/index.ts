@@ -34,17 +34,9 @@ serivce.interceptors.response.use(
 );
 
 // get request
-export const get = async <T>(url: string, params: Object): Promise<T> => {
-    const r = await serivce.get(url, {
-        params,
-    });
-
-    return r.data;
-};
+export const get = async <T>(url: string, params: Object): Promise<T> => serivce.get(url, {
+    params,
+});
 
 // post request
-export const post = async <T>(url: string, data: Object): Promise<T> => {
-    const r = await serivce.post(url, data);
-
-    return r.data;
-};
+export const post = async <T>(url: string, data: Object): Promise<T> => serivce.post(url, data);
