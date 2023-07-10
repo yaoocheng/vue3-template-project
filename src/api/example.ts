@@ -1,18 +1,10 @@
 import { get, post } from './index';
 
-interface type {}
-
 /**
  *  example api
  */
-export function exampleApi(data: Object) {
-    return post<type>('/api/exp', data);
+export function getTeamListApi(data: Object) {
+    return post<ResponseData<Array<teamListType>>>(`${isAddApi}/team/list`, data);
 }
 
-/**
- *  example api
- */
-export function example1Api(data: Object) {
-    return get<type>('/api/exp', data);
-}
 
